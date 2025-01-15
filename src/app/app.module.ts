@@ -1,30 +1,15 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductFormComponent } from './components/product-form/product-form.component';
+import { ProductEditComponent } from './components/product-edit/product-edit.component';
+import { RouterModule, provideRouter } from '@angular/router';
+import { routes } from './app.routes';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { AngularFireModule } from '@angular/fire/compat'; // Firebase modul
-import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { environment } from '../environments/environment';
-import { FirebaseService } from './services/firebase.service'; // A Firebase szolgáltatás importálása
-
-
-@NgModule({
-  imports: [
-    BrowserModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig), 
-    AngularFireDatabaseModule,
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideRouter(routes),
+    ReactiveFormsModule,
   ],
-  providers: [FirebaseService],
-})
-export class AppM {}
-
-@NgModule({
-    imports: [BrowserModule, AppComponent],
-  })
-  @NgModule({
-    declarations: [AppComponent], 
-    imports: [BrowserModule],
-    bootstrap: [AppComponent],
-  })
-  export class AppModule {}
-  
+});
