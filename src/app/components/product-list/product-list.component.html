@@ -1,0 +1,4 @@
+<div *ngFor="let product of products$ | async">
+  <h3>{{ product.name }}</h3>
+  <button (click)="product.id ? deleteProduct(product.id) : null">Delete</button>
+</div>
